@@ -14,7 +14,6 @@ int main(int argc, char** argv){
     char * line = NULL;
     size_t len = 0;
     size_t read;
-    char* res;
     pos p;
     p.x = 0;
     p.y = 0;
@@ -25,22 +24,17 @@ int main(int argc, char** argv){
         exit(EXIT_FAILURE);
 
     while(read = getline(&line, &len, file) != -1){
-        res = strstr(line, "forward");
 
-        if(res != NULL){
+        if(strstr(line, "forward")){
             p.x += atoi(line+7);
             p.y += atoi(line+7) * p.aim;
         }
 
-        res = strstr(line, "down");
-
-        if(res != NULL){
+        if(strstr(line, "down")){
             p.aim += atoi(line+4);
         }
 
-        res = strstr(line, "up");
-
-        if(res != NULL){
+        if(strstr(line, "up")){
             p.aim -= atoi(line+2);
         }
     }
